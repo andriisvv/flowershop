@@ -18,11 +18,19 @@
       <a href="#">Букети</a>
       <a href="#">Тюльпани</a>
     </nav>
-    <div class="header-actions">
-      <a href="#" class="btn btn-outline btn-sm">🛒 Кошик</a>
-      <a href="#" class="btn btn-ghost btn-sm">Увійти</a>
-      <a href="#" class="btn btn-primary btn-sm">Реєстрація</a>
-    </div>
+  <div class="header-actions">
+  <a href="{{ route('cart') }}" class="btn btn-outline btn-sm">🛒 Кошик</a>
+  @auth
+    <span style="font-size:14px;color:var(--text-2)">{{ Auth::user()->name }}</span>
+    <form method="POST" action="{{ route('logout') }}" style="display:inline">
+      @csrf
+      <button type="submit" class="btn btn-ghost btn-sm">Вийти</button>
+    </form>
+  @else
+    <a href="{{ route('login') }}" class="btn btn-ghost btn-sm">Увійти</a>
+    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Реєстрація</a>
+  @endauth
+</div>
   </header>
 
   @yield('content')
