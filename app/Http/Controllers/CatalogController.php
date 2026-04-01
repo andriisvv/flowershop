@@ -19,8 +19,23 @@ class CatalogController extends Controller
             });
         }
 
-        $products = $query->paginate(6);
+        if (request('search')) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        $products = $query->paginate(6)->withQueryString();
 
         return view('catalog.index', compact('categories', 'products'));
+    }
+
+    public function sales()
+    {
+        $categories = Category::withCount('products')->get();
+        $products = Product::with('category')
+                           ->where('is_active', true)
+                           ->where('discount', '>', 0)
+                           ->paginate(6);
+
+        return view('catalog.sales', compact('categories', 'products'));
     }
 }

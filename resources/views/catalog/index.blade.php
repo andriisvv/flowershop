@@ -11,7 +11,7 @@
     <p>Доставка по Україні · 6 категорій · Більше 40 видів</p>
     <div class="hero-actions">
       <a href="#catalog" class="btn btn-hero-primary">Переглянути каталог →</a>
-      <a href="#" class="btn btn-hero-outline">Акції</a>
+      <a href="{{ route('sales') }}" class="btn btn-hero-outline">Акції</a>
     </div>
   </div>
 </div>
@@ -31,6 +31,19 @@
         </a>
       @endforeach
     </div>
+    <div class="sidebar-section">
+  <h4>Пошук</h4>
+  <form method="GET" action="{{ route('catalog') }}">
+    @if(request('category'))
+      <input type="hidden" name="category" value="{{ request('category') }}">
+    @endif
+    <input type="text" name="search" class="form-control" placeholder="Назва квітки..." value="{{ request('search') }}">
+    <button type="submit" class="btn btn-primary btn-sm btn-block" style="margin-top:10px">🔍 Знайти</button>
+    @if(request('search'))
+      <a href="{{ route('catalog') }}" class="btn btn-ghost btn-sm btn-block" style="margin-top:6px">✕ Скинути</a>
+    @endif
+  </form>
+</div>
   </aside>
 
   <div class="products-area">
@@ -55,7 +68,11 @@
             <div class="product-footer">
               <span class="product-price">{{ number_format($product->price, 2) }} ₴</span>
               @if($product->stock > 0)
-                <button class="btn btn-primary btn-sm">🛒 Кошик</button>
+                <form method="POST" action="{{ route('cart.add') }}">
+  @csrf
+  <input type="hidden" name="product_id" value="{{ $product->id }}">
+  <button type="submit" class="btn btn-primary btn-sm">🛒 Кошик</button>
+</form>
               @else
                 <button class="btn btn-ghost btn-sm" disabled style="color:var(--text-3);border:1.5px solid var(--border-d)">Немає</button>
               @endif

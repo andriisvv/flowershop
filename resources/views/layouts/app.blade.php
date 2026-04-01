@@ -13,23 +13,26 @@
   <header class="header">
     <a href="{{ route('catalog') }}" class="logo">🌸 FlowerShop</a>
     <nav class="header-nav">
-      <a href="{{ route('catalog') }}" class="{{ request()->routeIs('catalog') ? 'active' : '' }}">Каталог</a>
-      <a href="#">Троянди</a>
-      <a href="#">Букети</a>
-      <a href="#">Тюльпани</a>
-    </nav>
+  <a href="{{ route('catalog') }}" class="{{ request()->routeIs('catalog') && !request('category') ? 'active' : '' }}">Каталог</a>
+  <a href="{{ route('catalog', ['category' => 'troyandi']) }}" class="{{ request('category') == 'troyandi' ? 'active' : '' }}">Троянди</a>
+  <a href="{{ route('catalog', ['category' => 'bukety']) }}" class="{{ request('category') == 'bukety' ? 'active' : '' }}">Букети</a>
+  <a href="{{ route('catalog', ['category' => 'tyulpany']) }}" class="{{ request('category') == 'tyulpany' ? 'active' : '' }}">Тюльпани</a>
+  <a href="{{ route('catalog', ['category' => 'orchideyi']) }}" class="{{ request('category') == 'orchideyi' ? 'active' : '' }}">Орхідеї</a>
+  <a href="{{ route('sales') }}" class="{{ request()->routeIs('sales') ? 'active' : '' }}">Акції</a>
+</nav>
   <div class="header-actions">
   <a href="{{ route('cart') }}" class="btn btn-outline btn-sm">🛒 Кошик</a>
-  @auth
-    <span style="font-size:14px;color:var(--text-2)">{{ Auth::user()->name }}</span>
-    <form method="POST" action="{{ route('logout') }}" style="display:inline">
-      @csrf
-      <button type="submit" class="btn btn-ghost btn-sm">Вийти</button>
-    </form>
-  @else
-    <a href="{{ route('login') }}" class="btn btn-ghost btn-sm">Увійти</a>
-    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Реєстрація</a>
-  @endauth
+@auth
+  <a href="{{ route('my.orders') }}" class="btn btn-ghost btn-sm">Мої замовлення</a>
+  <span style="font-size:14px;color:var(--text-2)">{{ Auth::user()->name }}</span>
+  <form method="POST" action="{{ route('logout') }}" style="display:inline">
+    @csrf
+    <button type="submit" class="btn btn-ghost btn-sm">Вийти</button>
+  </form>
+@else
+  <a href="{{ route('login') }}" class="btn btn-ghost btn-sm">Увійти</a>
+  <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Реєстрація</a>
+@endauth
 </div>
   </header>
 

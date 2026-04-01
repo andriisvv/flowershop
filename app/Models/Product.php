@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'category_id', 'name', 'description',
-        'price', 'stock', 'is_active', 'image'
-    ];
+    'category_id', 'name', 'description',
+    'price', 'discount', 'stock', 'is_active', 'image'
+];
+public function getDiscountedPriceAttribute()
+{
+    if ($this->discount > 0) {
+        return $this->price * (1 - $this->discount / 100);
+    }
+    return $this->price;
+}
 
     public function category()
     {
