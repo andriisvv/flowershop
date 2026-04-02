@@ -10,7 +10,9 @@ class Order extends Model
         'user_id', 'name', 'phone', 'email',
         'address', 'comment', 'total', 'status'
     ];
-
+    protected $attributes = [
+    'status' => 'pending',
+];
     public function items()
     {
         return $this->hasMany(OrderItem::class);

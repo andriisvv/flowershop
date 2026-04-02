@@ -28,6 +28,7 @@ class AdminProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'price'       => 'required|numeric|min:0',
             'stock'       => 'required|integer|min:0',
+            'discount'    => 'nullable|integer|min:0|max:99',
             'description' => 'nullable|string',
             'image'       => 'nullable|url',
         ]);
@@ -37,6 +38,7 @@ class AdminProductController extends Controller
             'category_id' => $request->category_id,
             'price'       => $request->price,
             'stock'       => $request->stock,
+            'discount'    => $request->discount ?? 0,
             'description' => $request->description,
             'image'       => $request->image,
             'is_active'   => $request->has('is_active'),
@@ -62,6 +64,7 @@ class AdminProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'price'       => 'required|numeric|min:0',
             'stock'       => 'required|integer|min:0',
+            'discount'    => 'nullable|integer|min:0|max:99',
             'description' => 'nullable|string',
             'image'       => 'nullable|url',
         ]);
@@ -71,6 +74,7 @@ class AdminProductController extends Controller
             'category_id' => $request->category_id,
             'price'       => $request->price,
             'stock'       => $request->stock,
+            'discount'    => $request->discount ?? 0,
             'description' => $request->description,
             'image'       => $request->image,
             'is_active'   => $request->has('is_active'),

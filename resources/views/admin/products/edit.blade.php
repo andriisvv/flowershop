@@ -33,15 +33,19 @@
       </div>
 
       <div class="form-row">
-        <div class="form-group">
-          <label>Ціна (₴) *</label>
-          <input type="number" name="price" step="0.01" class="form-control" value="{{ old('price', $product->price) }}">
-        </div>
-        <div class="form-group">
-          <label>Залишок (шт) *</label>
-          <input type="number" name="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
-        </div>
-      </div>
+  <div class="form-group">
+    <label>Ціна (₴) *</label>
+    <input type="number" name="price" step="0.01" class="form-control" value="{{ old('price', $product->price) }}">
+  </div>
+  <div class="form-group">
+    <label>Залишок (шт) *</label>
+    <input type="number" name="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
+  </div>
+</div>
+<div class="form-group">
+  <label>Знижка (%) — залиш 0 якщо немає акції</label>
+  <input type="number" name="discount" min="0" max="99" class="form-control" value="{{ old('discount', $product->discount) }}">
+</div>
 
       <div class="form-group">
         <label>Опис</label>

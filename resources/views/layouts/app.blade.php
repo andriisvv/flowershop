@@ -41,7 +41,7 @@
   <footer class="footer">
     <div class="footer-logo">🌸 FlowerShop</div>
     <div>вул. Квіткова 1, Київ &nbsp;|&nbsp; +380 99 123 45 67</div>
-    <div>© 2025 FlowerShop. Всі права захищено.</div>
+    <div>© 2026 FlowerShop. Всі права захищено.</div>
   </footer>
 
 </body>

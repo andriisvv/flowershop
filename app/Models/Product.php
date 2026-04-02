@@ -10,6 +10,10 @@ class Product extends Model
     'category_id', 'name', 'description',
     'price', 'discount', 'stock', 'is_active', 'image'
 ];
+    protected $attributes = [
+    'is_active' => true,
+    'discount'  => 0,
+];
 public function getDiscountedPriceAttribute()
 {
     if ($this->discount > 0) {

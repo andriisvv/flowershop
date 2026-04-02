@@ -45,6 +45,10 @@
           @error('stock')<span class="invalid-feedback">{{ $message }}</span>@enderror
         </div>
       </div>
+      <div class="form-group">
+  <label>Знижка (%) — залиш 0 якщо немає акції</label>
+  <input type="number" name="discount" min="0" max="99" class="form-control" value="{{ old('discount', 0) }}">
+</div>
 
       <div class="form-group">
         <label>Опис</label>
